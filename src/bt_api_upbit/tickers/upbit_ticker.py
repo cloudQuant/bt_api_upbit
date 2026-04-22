@@ -78,7 +78,8 @@ class UpbitTickerData(TickerData):
                     import datetime
 
                     self.timestamp = datetime.datetime.strptime(
-                        time_str, "%Y-%m-%d %H:%M:%S"
+                        time_str,
+                        "%Y-%m-%d %H:%M:%S",
                     ).timestamp()
                 except (ValueError, KeyError):
                     self.timestamp = time.time()
@@ -136,5 +137,5 @@ class UpbitTickerData(TickerData):
             f"UpbitTicker(symbol={self.symbol_name}, "
             f"last={self.last_price}, "
             f"bid={self.bid_price}, ask={self.ask_price}, "
-            f"change={change_val:.4f}%)"
+            f"change={change_val:.4f}%)",
         )

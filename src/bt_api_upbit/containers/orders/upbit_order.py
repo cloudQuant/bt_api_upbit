@@ -12,7 +12,7 @@ logger = get_logger("container")
 
 
 class UpbitOrderData(OrderData):
-    def __init__(self, order_info, symbol_name, asset_type, has_been_json_encoded=False):
+    def __init__(self, order_info, symbol_name, asset_type, has_been_json_encoded=False) -> None:
         super().__init__(order_info, has_been_json_encoded)
         self.exchange_name = "UPBIT"
         self.local_update_time = time.time()
@@ -42,7 +42,7 @@ class UpbitOrderData(OrderData):
         self.all_data: dict[str, Any] | None = None
         self.has_been_init_data = False
 
-    def init_data(self):
+    def init_data(self) -> None:
         try:
             if not self.has_been_json_encoded:
                 self.order_data = json.loads(self.raw_data)
@@ -127,7 +127,7 @@ class UpbitOrderData(OrderData):
             return (self.executed_volume or 0) / self.volume * 100
         return 0.0
 
-    def __str__(self):
+    def __str__(self) -> str:
         if not self.has_been_init_data:
             self.init_data()
 

@@ -1,6 +1,5 @@
 from bt_api_base.containers.exchanges.exchange_data import ExchangeData
 
-
 _FALLBACK_REST_PATHS = {
     "get_exchange_info": "GET /v1/market/all",
     "get_tick": "GET /v1/ticker",
@@ -64,7 +63,8 @@ class UpbitExchangeDataSpot(UpbitExchangeData):
 
     def get_rest_path(self, key: str, **kwargs) -> str:
         if key not in self.rest_paths or self.rest_paths[key] == "":
-            raise ValueError(f"[{self.exchange_name}] REST path not found: {key}")
+            msg = f"[{self.exchange_name}] REST path not found: {key}"
+            raise ValueError(msg)
         return self.rest_paths[key]
 
     def get_wss_path(self, channel, symbol: str | None = None, **kwargs) -> str:

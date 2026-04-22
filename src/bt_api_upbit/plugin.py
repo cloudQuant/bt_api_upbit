@@ -1,5 +1,5 @@
-from bt_api_base.plugins.protocol import PluginInfo
 from bt_api_base.plugins.metadata import PluginMetadata
+from bt_api_base.plugins.protocol import PluginInfo
 
 metadata = PluginMetadata(
     name="bt_api_upbit",

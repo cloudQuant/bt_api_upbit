@@ -1,10 +1,11 @@
-from bt_api_base.registry import ExchangeRegistry
-from bt_api_upbit.feeds.live_upbit.spot import UpbitRequestDataSpot
-from bt_api_upbit.exchange_data import UpbitExchangeDataSpot
 from bt_api_base.balance_utils import simple_balance_handler as _upbit_balance_handler
+from bt_api_base.registry import ExchangeRegistry
+
+from bt_api_upbit.exchange_data import UpbitExchangeDataSpot
+from bt_api_upbit.feeds.live_upbit.spot import UpbitRequestDataSpot
 
 
-def register_upbit():
+def register_upbit() -> None:
     """Register Upbit SPOT to ExchangeRegistry."""
     ExchangeRegistry.register_feed("UPBIT___SPOT", UpbitRequestDataSpot)
     ExchangeRegistry.register_exchange_data("UPBIT___SPOT", UpbitExchangeDataSpot)

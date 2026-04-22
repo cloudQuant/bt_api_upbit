@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "bt_api_upbit"
-version = "0.1.0"
+version = "0.1.1"
 description = "Upbit exchange plugin for bt_api framework - Korean cryptocurrency exchange"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -79,9 +79,7 @@ select = [
     "B",
     "C4",
     "T20",
-    "UP",
     "YTT",
-    "ANN",
     "ASYNC",
     "BLE",
     "COM",
@@ -93,21 +91,21 @@ select = [
     "PIE",
     "T10",
     "DJ",
-    "E501",
-    "E711",
-    "E713",
-    "E714",
-    "E721",
-    "E722",
-    "E731",
-    "W291",
-    "W292",
-    "W293",
-    "W504",
+    "S",
+    "N",
+    "RUF100",
+    "PERF",
+    "PIE790",
 ]
 ignore = [
     "E501",
-    "E731",
+    "B008",
+    "N802",
+    "N803",
+    "S101",
+    "G004",
+    "G201",
+    "DTZ007",
 ]
 
 [tool.mypy]

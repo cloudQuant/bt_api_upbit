@@ -11,7 +11,7 @@ logger = get_logger("container")
 
 
 class UpbitBalanceData(BalanceData):
-    def __init__(self, balance_info, currency, asset_type, has_been_json_encoded=False):
+    def __init__(self, balance_info, currency, asset_type, has_been_json_encoded=False) -> None:
         super().__init__(balance_info, has_been_json_encoded)
         self.exchange_name = "UPBIT"
         self.local_update_time = time.time()
@@ -29,7 +29,7 @@ class UpbitBalanceData(BalanceData):
         self.all_data: dict | None = None
         self.has_been_init_data = False
 
-    def init_data(self):
+    def init_data(self) -> None:
         try:
             if not self.has_been_json_encoded:
                 self.balance_data = json.loads(self.raw_data)
@@ -38,7 +38,8 @@ class UpbitBalanceData(BalanceData):
             self.locked = from_dict_get_float(self.balance_data, "locked")
             self.avg_buy_price = from_dict_get_float(self.balance_data, "avg_buy_price")
             self.avg_buy_price_modified = from_dict_get_string(
-                self.balance_data, "avg_buy_price_modified"
+                self.balance_data,
+                "avg_buy_price_modified",
             )
 
             self.currency_name = from_dict_get_string(self.balance_data, "currency_name")
@@ -84,7 +85,7 @@ class UpbitBalanceData(BalanceData):
     def locked_balance(self):
         return self.locked
 
-    def __str__(self):
+    def __str__(self) -> str:
         if not self.has_been_init_data:
             self.init_data()
 

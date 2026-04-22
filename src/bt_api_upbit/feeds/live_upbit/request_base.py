@@ -10,10 +10,11 @@ try:
 except ImportError:
     _jwt = None
 
+from bt_api_base.containers.requestdatas.request_data import RequestData
 from bt_api_base.feeds.capability import Capability
 from bt_api_base.feeds.feed import Feed
 from bt_api_base.logging_factory import get_logger
-from bt_api_base.containers.requestdatas.request_data import RequestData
+
 from bt_api_upbit.exchange_data import UpbitExchangeDataSpot
 
 
@@ -87,7 +88,7 @@ class UpbitRequestData(Feed):
             return {"Authorization": f"Bearer {token}"}
         return {}
 
-    def push_data_to_queue(self, data):
+    def push_data_to_queue(self, data) -> None:
         if self.data_queue is not None:
             self.data_queue.put(data)
 
@@ -119,7 +120,13 @@ class UpbitRequestData(Feed):
         return RequestData(res, extra_data)
 
     async def async_request(
-        self, path, params=None, body=None, extra_data=None, timeout=5, is_sign=False
+        self,
+        path,
+        params=None,
+        body=None,
+        extra_data=None,
+        timeout=5,
+        is_sign=False,
     ):
         if params is None:
             params = {}
@@ -147,7 +154,7 @@ class UpbitRequestData(Feed):
         self.async_logger.info(f"async {method} {url} -> {type(res)}")
         return RequestData(res, extra_data)
 
-    def async_callback(self, request_data):
+    def async_callback(self, request_data) -> None:
         if request_data is not None:
             self.push_data_to_queue(request_data)
 
@@ -162,7 +169,7 @@ class UpbitRequestData(Feed):
                 "asset_type": self.asset_type,
                 "exchange_name": self.exchange_name,
                 "normalize_function": self._get_exchange_info_normalize_function,
-            }
+            },
         )
         return path, params, extra_data
 
@@ -178,7 +185,7 @@ class UpbitRequestData(Feed):
                 "asset_type": self.asset_type,
                 "exchange_name": self.exchange_name,
                 "normalize_function": self._get_tick_normalize_function,
-            }
+            },
         )
         return path, params, extra_data
 
@@ -194,7 +201,7 @@ class UpbitRequestData(Feed):
                 "asset_type": self.asset_type,
                 "exchange_name": self.exchange_name,
                 "normalize_function": self._get_depth_normalize_function,
-            }
+            },
         )
         return path, params, extra_data
 
@@ -225,7 +232,7 @@ class UpbitRequestData(Feed):
                 "asset_type": self.asset_type,
                 "exchange_name": self.exchange_name,
                 "normalize_function": self._get_kline_normalize_function,
-            }
+            },
         )
         return base_path, params, extra_data
 
@@ -241,12 +248,18 @@ class UpbitRequestData(Feed):
                 "asset_type": self.asset_type,
                 "exchange_name": self.exchange_name,
                 "normalize_function": self._get_trade_history_normalize_function,
-            }
+            },
         )
         return path, params, extra_data
 
     def _make_order(
-        self, symbol, size, price=None, order_type="bid-limit", extra_data=None, **kwargs
+        self,
+        symbol,
+        size,
+        price=None,
+        order_type="bid-limit",
+        extra_data=None,
+        **kwargs,
     ):
         path = self._params.get_rest_path("make_order")
         market = self._params.get_symbol(symbol)
@@ -266,7 +279,7 @@ class UpbitRequestData(Feed):
                 "asset_type": self.asset_type,
                 "exchange_name": self.exchange_name,
                 "normalize_function": self._make_order_normalize_function,
-            }
+            },
         )
         return path, body, extra_data
 
@@ -283,7 +296,7 @@ class UpbitRequestData(Feed):
                 "asset_type": self.asset_type,
                 "exchange_name": self.exchange_name,
                 "normalize_function": self._cancel_order_normalize_function,
-            }
+            },
         )
         return path, params, extra_data
 
@@ -300,7 +313,7 @@ class UpbitRequestData(Feed):
                 "asset_type": self.asset_type,
                 "exchange_name": self.exchange_name,
                 "normalize_function": self._query_order_normalize_function,
-            }
+            },
         )
         return path, params, extra_data
 
@@ -317,7 +330,7 @@ class UpbitRequestData(Feed):
                 "asset_type": self.asset_type,
                 "exchange_name": self.exchange_name,
                 "normalize_function": self._get_open_orders_normalize_function,
-            }
+            },
         )
         return path, params, extra_data
 
@@ -334,7 +347,7 @@ class UpbitRequestData(Feed):
                 "asset_type": self.asset_type,
                 "exchange_name": self.exchange_name,
                 "normalize_function": self._get_deals_normalize_function,
-            }
+            },
         )
         return path, params, extra_data
 
@@ -349,7 +362,7 @@ class UpbitRequestData(Feed):
                 "asset_type": self.asset_type,
                 "exchange_name": self.exchange_name,
                 "normalize_function": self._get_account_normalize_function,
-            }
+            },
         )
         return path, params, extra_data
 
@@ -364,7 +377,7 @@ class UpbitRequestData(Feed):
                 "asset_type": self.asset_type,
                 "exchange_name": self.exchange_name,
                 "normalize_function": self._get_balance_normalize_function,
-            }
+            },
         )
         return path, params, extra_data
 
