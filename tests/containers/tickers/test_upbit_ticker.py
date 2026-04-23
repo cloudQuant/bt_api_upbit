@@ -26,7 +26,7 @@ class TestUpbitTickerData:
             "low_price": 49000000,
         }
         ticker = UpbitTickerData(
-            data, symbol_name="KRW-BTC", asset_type="SPOT", has_been_json_encoded=True
+            data, symbol_name="KRW-BTC", asset_type="SPOT", has_been_json_encoded=True,
         )
         ticker.init_data()
 
@@ -35,7 +35,7 @@ class TestUpbitTickerData:
     def test_get_all_data(self):
         """Test get_all_data."""
         ticker = UpbitTickerData(
-            {}, symbol_name="KRW-BTC", asset_type="SPOT", has_been_json_encoded=True
+            {}, symbol_name="KRW-BTC", asset_type="SPOT", has_been_json_encoded=True,
         )
         result = ticker.get_all_data()
 
@@ -45,7 +45,7 @@ class TestUpbitTickerData:
     def test_str_representation(self):
         """Test __str__ method."""
         ticker = UpbitTickerData(
-            {}, symbol_name="KRW-BTC", asset_type="SPOT", has_been_json_encoded=True
+            {}, symbol_name="KRW-BTC", asset_type="SPOT", has_been_json_encoded=True,
         )
         result = str(ticker)
 

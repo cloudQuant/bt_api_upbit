@@ -27,7 +27,7 @@ class TestUpbitBalanceData:
             "unit_currency": "KRW",
         }
         balance = UpbitBalanceData(
-            data, currency="BTC", asset_type="SPOT", has_been_json_encoded=True
+            data, currency="BTC", asset_type="SPOT", has_been_json_encoded=True,
         )
         balance.init_data()
 
@@ -39,7 +39,7 @@ class TestUpbitBalanceData:
         """Test get_all_data."""
         data = {"balance": "1.5", "locked": "0.5"}
         balance = UpbitBalanceData(
-            data, currency="BTC", asset_type="SPOT", has_been_json_encoded=True
+            data, currency="BTC", asset_type="SPOT", has_been_json_encoded=True,
         )
         result = balance.get_all_data()
 
@@ -50,7 +50,7 @@ class TestUpbitBalanceData:
         """Test __str__ method."""
         data = {"balance": "1.5", "locked": "0.5"}
         balance = UpbitBalanceData(
-            data, currency="BTC", asset_type="SPOT", has_been_json_encoded=True
+            data, currency="BTC", asset_type="SPOT", has_been_json_encoded=True,
         )
         result = str(balance)
 

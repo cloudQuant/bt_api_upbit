@@ -32,7 +32,7 @@ class TestUpbitOrderData:
             "market": "KRW-BTC",
         }
         order = UpbitOrderData(
-            data, symbol_name="KRW-BTC", asset_type="SPOT", has_been_json_encoded=True
+            data, symbol_name="KRW-BTC", asset_type="SPOT", has_been_json_encoded=True,
         )
         order.init_data()
 
@@ -43,7 +43,7 @@ class TestUpbitOrderData:
     def test_get_all_data(self):
         """Test get_all_data."""
         order = UpbitOrderData(
-            {}, symbol_name="KRW-BTC", asset_type="SPOT", has_been_json_encoded=True
+            {}, symbol_name="KRW-BTC", asset_type="SPOT", has_been_json_encoded=True,
         )
         result = order.get_all_data()
 
@@ -53,7 +53,7 @@ class TestUpbitOrderData:
     def test_str_representation(self):
         """Test __str__ method."""
         order = UpbitOrderData(
-            {}, symbol_name="KRW-BTC", asset_type="SPOT", has_been_json_encoded=True
+            {}, symbol_name="KRW-BTC", asset_type="SPOT", has_been_json_encoded=True,
         )
         result = str(order)
 

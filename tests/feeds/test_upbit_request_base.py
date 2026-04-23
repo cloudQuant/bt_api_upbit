@@ -1,6 +1,5 @@
-from unittest.mock import AsyncMock
-import pytest
 from bt_api_base.containers.requestdatas.request_data import RequestData
+
 from bt_api_upbit.feeds.live_upbit.request_base import UpbitRequestData
 
 
